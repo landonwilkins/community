@@ -2,12 +2,6 @@ from typing import Set
 
 from talon import Module, Context, actions
 
-default_alphabet = 'air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip'.split(' ')
-letters = 'abcdefghijklmnopqrstuvwxyz'
-
-default_digits = 'zero one two three four five six seven eight nine'.split(' ')
-numbers = [str(i) for i in range(10)]
-
 mod = Module()
 mod.list('letter',   desc='The spoken phonetic alphabet')
 mod.list('symbol',   desc='All symbols from the keyboard')
@@ -49,6 +43,7 @@ def key(m) -> str:
     "A single key with optional modifiers"
 
 ctx = Context()
+
 ctx.lists['self.modifier'] = {
     'command': 'cmd',
     'control': 'ctrl',   'troll':   'ctrl',
@@ -56,7 +51,55 @@ ctx.lists['self.modifier'] = {
     'alt':     'alt',    'option':  'alt',
 }
 
-ctx.lists['self.letter'] = dict(zip(default_alphabet, letters))
+ctx.lists['self.arrow'] = {
+    'left':  'left',
+    'right': 'right',
+    'up':    'up',
+    'down':  'down',
+}
+
+ctx.lists['self.number'] = {
+    'zero': 0,
+    'one': 1,
+    'two': 2,
+    'three': 3,
+    'four': 4,
+    'five': 5,
+    'six': 6,
+    'seven': 7,
+    'eight': 8,
+    'nine': 9,
+}
+
+ctx.lists['self.letter'] = {
+    'air': 'a',
+    'bat': 'b',
+    'cap': 'c',
+    'drum': 'd',
+    'each': 'e',
+    'fine': 'f',
+    'gust': 'g',
+    'harp': 'h',
+    'sit': 'i',
+    'jury': 'j',
+    'crunch': 'k',
+    'look': 'l',
+    'made': 'm',
+    'near': 'n',
+    'odd': 'o',
+    'pit': 'p',
+    'quench': 'q',
+    'red': 'r',
+    'sun': 's',
+    'trap': 't',
+    'urge': 'u',
+    'vest': 'v',
+    'whale': 'w',
+    'plex': 'x',
+    'yank': 'y',
+    'zip': 'z',
+}
+
 ctx.lists['self.symbol'] = {
     'back tick': '`',
     'comma': ',',
@@ -72,7 +115,7 @@ ctx.lists['self.symbol'] = {
     'plus': '+',
     'question mark': '?',
     'tilde': '~',
-    'bang': '!', 'exclamation point': '!', 
+    'bang': '!', 'exclamation point': '!',
     'dollar': '$', 'dollar sign': '$',
     'down score': '_', 'under score': '_',
     'colon': ':',
@@ -90,14 +133,6 @@ ctx.lists['self.symbol'] = {
     'and sign': '&', 'ampersand': '&', 'amper': '&',
     'pipe': '|',
     'dubquote': '"', 'double quote': '"',
-}
-
-ctx.lists['self.number'] = dict(zip(default_digits, numbers))
-ctx.lists['self.arrow'] = {
-    'left':  'left',
-    'right': 'right',
-    'up':    'up',
-    'down':  'down',
 }
 
 simple_keys = [
